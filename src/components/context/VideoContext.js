@@ -17,6 +17,13 @@ export function VideoContextProvider({ children }) {
 
   // to close the add video modal
   function handleClose() {
+    // if are necessary to clean modal title and link inputs after it closes
+    if (title) {
+      setTitle("");
+    }
+    if (link) {
+      setLink("");
+    }
     setOpenFormModal(false);
   }
 
@@ -43,18 +50,25 @@ export function VideoContextProvider({ children }) {
     setOpenFormModal(false);
   }
 
+  function handleEdit(videoTitle, videoLink) {
+    setTitle(videoTitle);
+    setLink(videoLink);
+    setOpenFormModal(true);
+  }
+
   return (
     <VideoContext.Provider
       value={{
         handleAdd,
         handleClose,
+        handleEdit,
+        handleSubmit,
         title,
         setTitle,
         link,
         setLink,
         titleHandler,
         linkHandler,
-        handleSubmit,
       }}
     >
       {children}

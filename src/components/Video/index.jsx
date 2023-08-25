@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { IoPencil, IoThumbsUp, IoTrashBin } from "react-icons/io5";
+import { VideoContext } from "../context/VideoContext";
 import { Button, ButtonArea, Container } from "./styles";
 
-import { IoPencil, IoThumbsUp, IoTrashBin } from "react-icons/io5";
-
 export default function Video({ id, title, link, liked }) {
+  const { handleEdit } = useContext(VideoContext);
+
   return (
     <li>
       <Container>
@@ -15,7 +17,7 @@ export default function Video({ id, title, link, liked }) {
           <Button liked={liked}>
             <IoThumbsUp />
           </Button>
-          <Button>
+          <Button onClick={() => handleEdit(title, link)}>
             <IoPencil />
           </Button>
           <Button>
